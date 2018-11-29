@@ -58,6 +58,18 @@
 		>;
 	};
 
+	ehrpwm0a_pins: pinmux_ehrpwm0a_pins {
+		pinctrl-single,pins = <
+			0x150 (PIN_OUTPUT | MUX_MODE3) /* UART2_RXD.ehrpwm0A */
+		>;
+	};
+
+	ehrpwm0b_pins: pinmux_ehrpwm0b_pins {
+		pinctrl-single,pins = <
+			0x154 (PIN_OUTPUT | MUX_MODE3) /* UART2_TXD.ehrpwm0B */
+		>;
+	};
+
 	ehrpwm1a_pins: pinmux_ehrpwm1a_pins {
 		pinctrl-single,pins = <
 			0x0c8 (PIN_OUTPUT | MUX_MODE2) /* UART3_CTSN.ehrpwm1A */
@@ -80,6 +92,16 @@
 		pinctrl-single,pins = <
 			0x0a4 (PIN_OUTPUT | MUX_MODE3) /* GPIO2_7.ehrpwm2B */
 		>;
+	};
+};
+
+&epwmss0 {
+	status = "okay";
+
+	ehrpwm0: ehrpwm@48300200 {
+		status = "okay";
+		pinctrl-names = "default";
+		pinctrl-0 = <&ehrpwm0a_pins &ehrpwm0b_pins>;
 	};
 };
 
