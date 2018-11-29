@@ -303,9 +303,9 @@ static int ehrpwm_pwm_config(struct pwm_chip *chip, struct pwm_device *pwm,
 
 	ehrpwm_write(pc->mmio_base, TBPRD, period_cycles);
 
-	/* Configure ehrpwm counter for up-count mode */
+	/* Configure ehrpwm counter for updown-count mode */
 	ehrpwm_modify(pc->mmio_base, TBCTL, TBCTL_CTRMODE_MASK,
-			TBCTL_CTRMODE_UP);
+			TBCTL_CTRMODE_UPDOWN);
 
 	if (pwm->hwpwm == 1)
 		/* Channel 1 configured with compare B register */
