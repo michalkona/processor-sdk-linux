@@ -57,8 +57,28 @@
 			0x06c (PIN_INPUT_PULLDOWN | MUX_MODE7)	/* gpmc_a11.GPIO1_27 */
 		>;
 	};
+	
+	 ehrpwm2a_pins: pinmux_ehrpwm2a_pins {
+		pinctrl-single,pins = <
+			0x0a0 (PIN_OUTPUT | MUX_MODE3) /* gpmc_ad8.ehrpwm2A */
+		>;
+	};
+
+	ehrpwm2b_pins: pinmux_ehrpwm2b_pins {
+		pinctrl-single,pins = <
+			0x0a4 (PIN_OUTPUT | MUX_MODE3) /* gpmc_ad9.ehrpwm2B */
+		>;
+	};
 };
 
+&epwmss2 {
+    status = "okay";
+
+    ehrpwm2: pwm@48304200 {
+        status = "okay";
+        pinctrl-names = "default";
+        pinctrl-0 = <&ehrpwm2a_pins &ehrpwm2b_pins>;
+    };
 };
 
 &mcasp0	{
