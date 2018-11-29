@@ -84,14 +84,14 @@
 };
 
 &epwmss1 {
-	status = "okay"
+	status = "okay";
 
 	ehrpwm1: ehrpwm@48302200 {
 		status = "okay";
 		pinctrl-names = "default";
 		pinctrl-0 = <&ehrpwm1a_pins &ehrpwm1b_pins>;
 	};
-}
+};
 
 &epwmss2 {
   status = "okay";
