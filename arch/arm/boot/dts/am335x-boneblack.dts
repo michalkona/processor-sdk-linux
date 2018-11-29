@@ -57,28 +57,50 @@
 			0x06c (PIN_INPUT_PULLDOWN | MUX_MODE7)	/* gpmc_a11.GPIO1_27 */
 		>;
 	};
-	
-	 ehrpwm2a_pins: pinmux_ehrpwm2a_pins {
+
+	ehrpwm1a_pins: pinmux_ehrpwm1a_pins {
 		pinctrl-single,pins = <
-			0x0a0 (PIN_OUTPUT | MUX_MODE3) /* gpmc_ad8.ehrpwm2A */
+			0x0c8 (PIN_OUTPUT | MUX_MODE2) /* UART3_CTSN.ehrpwm1A */
+		>;
+	};
+
+	ehrpwm1b_pins: pinmux_ehrpwm1b_pins {
+		pinctrl-single,pins = <
+			0x0cc (PIN_OUTPUT | MUX_MODE3) /* UART3_RTSN.ehrpwm1B */
+		>;
+	};
+
+	ehrpwm2a_pins: pinmux_ehrpwm2a_pins {
+		pinctrl-single,pins = <
+			0x0a0 (PIN_OUTPUT | MUX_MODE3) /* GPIO2_6.ehrpwm2A */
 		>;
 	};
 
 	ehrpwm2b_pins: pinmux_ehrpwm2b_pins {
 		pinctrl-single,pins = <
-			0x0a4 (PIN_OUTPUT | MUX_MODE3) /* gpmc_ad9.ehrpwm2B */
+			0x0a4 (PIN_OUTPUT | MUX_MODE3) /* GPIO2_7.ehrpwm2B */
 		>;
 	};
 };
 
-&epwmss2 {
-    status = "okay";
+&epwmss1 {
+	status = "okay"
 
-    ehrpwm2: pwm@48304200 {
-        status = "okay";
-        pinctrl-names = "default";
-        pinctrl-0 = <&ehrpwm2a_pins &ehrpwm2b_pins>;
-    };
+	ehrpwm1: ehrpwm@48302200 {
+		status = "okay";
+		pinctrl-names = "default";
+		pinctrl-0 = <&ehrpwm1a_pins &ehrpwm1b_pins>;
+	};
+}
+
+&epwmss2 {
+  status = "okay";
+
+  ehrpwm2: ehrpwm@48304200 {
+    status = "okay";
+    pinctrl-names = "default";
+    pinctrl-0 = <&ehrpwm2a_pins &ehrpwm2b_pins>;
+  };
 };
 
 &mcasp0	{
