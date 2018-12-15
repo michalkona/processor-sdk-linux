@@ -319,10 +319,10 @@ static int ehrpwm_pwm_config(struct pwm_chip *chip, struct pwm_device *pwm,
 	ehrpwm_modify(pc->mmio_base, TBCTL, TBCTL_PRDLD_MASK, TBCTL_PRDLD_SHDW);
 
 	ehrpwm_write(pc->mmio_base, TBPRD, period_cycles);
-    //Active High S5 = 0, S4 = 0, S3 = 0, S2 = 0, S1 = 1, S0 = 1
-    ehrpwm_write(pc->mmio_base, DBCTL, 0x3);
-    ehrpwm_write(pc->mmio_base, DBRED, 100);
-    ehrpwm_write(pc->mmio_base, DBFED, 100);
+    //Active High Complementary S5 = 0, S4 = 0, S3 = 1, S2 = 0, S1 = 1, S0 = 1
+    ehrpwm_write(pc->mmio_base, DBCTL, 0xB);
+    ehrpwm_write(pc->mmio_base, DBRED, 6);
+    ehrpwm_write(pc->mmio_base, DBFED, 6);
 
 	/* Configure ehrpwm counter for updown-count mode */
 	ehrpwm_modify(pc->mmio_base, TBCTL, TBCTL_CTRMODE_MASK,
